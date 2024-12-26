@@ -1,0 +1,31 @@
+{
+	"name": "safmc-d2-env:gazebo",
+	"image": "lnfu/safmc-d2-env:gazebo",
+	"runArgs": [
+		"--network=host"
+	],
+	"remoteUser": "root",
+	"workspaceFolder": "/workspace/",
+	"workspaceMount": "source=${localWorkspaceFolder}/workspace/,target=/workspace/,type=bind,consistency=delegated",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/bin/python3",
+				"editor.formatOnSave": true,
+				"editor.formatOnPaste": true,
+				"python.formatting.provider": "autopep8",
+				"python.formatting.autopep8Args": [
+					"--max-line-length=120"
+				],
+				"python.linting.flake8Enabled": true,
+				"python.linting.flake8Args": [
+					"--max-line-length=120"
+				]
+			},
+			"extensions": [
+				"ms-python.python",
+				"redhat.vscode-xml"
+			]
+		}
+	}
+}
