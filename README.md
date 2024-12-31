@@ -6,6 +6,7 @@
 
 ```sh
 cp .devcontainer/devcontainer.json.linux .devcontainer/devcontainer.json
+mkdir -p workspace
 ```
 
 2. Open the project in Visual Studio Code, then press `Ctrl + Shift + P` and choose `Dev Containers: Reopen in Container`.
@@ -14,8 +15,9 @@ cp .devcontainer/devcontainer.json.linux .devcontainer/devcontainer.json
 
 1. Copy the Windows configuration file:
 
-```
-copy .devcontainer/devcontainer.json.windows .devcontainer/devcontainer.json
+```powershell
+Copy-Item .devcontainer/devcontainer.json.windows .devcontainer/devcontainer.json
+New-Item -ItemType Directory -Path .\workspace
 ```
 
 2. Open the project in Visual Studio Code, then press `Ctrl + Shift + P` and choose `Dev Containers: Reopen in Container`.
