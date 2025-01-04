@@ -1,4 +1,4 @@
-FROM safmc-d2-env:desktop AS base
+FROM lnfu/safmc-d2-env:desktop AS base
 
 RUN curl https://packages.osrfoundation.org/gazebo.gpg \
     --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg

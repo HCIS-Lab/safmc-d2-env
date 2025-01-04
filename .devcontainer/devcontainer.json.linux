@@ -1,10 +1,11 @@
 {
-	"name": "safmc-d2-env:gazebo",
-	"image": "lnfu/safmc-d2-env:gazebo",
+	"name": "lnfu/safmc-d2-env:micro-xrce-agent",
+	"image": "lnfu/safmc-d2-env:micro-xrce-agent",
 	"runArgs": [
 		"--network=host"
 	],
 	"remoteUser": "root",
+	"postCreateCommand": "/usr/local/bin/MicroXRCEAgent udp4 -p 8888",
 	"workspaceFolder": "/workspace/",
 	"workspaceMount": "source=${localWorkspaceFolder}/workspace/,target=/workspace/,type=bind,consistency=delegated",
 	"mounts": [
