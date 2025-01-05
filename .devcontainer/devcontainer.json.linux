@@ -4,7 +4,7 @@
 	"runArgs": [
 		"--network=host"
 	],
-	"remoteUser": "root",
+	"remoteUser": "user",
 	"postCreateCommand": "/usr/local/bin/MicroXRCEAgent udp4 -p 8888",
 	"workspaceFolder": "/workspace/",
 	"workspaceMount": "source=${localWorkspaceFolder}/workspace/,target=/workspace/,type=bind,consistency=delegated",
