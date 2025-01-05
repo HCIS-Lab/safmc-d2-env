@@ -5,8 +5,8 @@ RUN git clone https://github.com/eProsima/Micro-XRCE-DDS-Agent.git \
     && mkdir build && cd build \
     && cmake .. \
     && make -j$(nproc) \
-    && make install \
-    && ldconfig /usr/local/lib \
+    && sudo make install \
+    && sudo ldconfig /usr/local/lib \
     && cd .. \
     && rm -rf Micro-XRCE-DDS-Agent
 
