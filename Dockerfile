@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM nvidia/opengl:1.0-glvnd-runtime-ubuntu22.04
 
 ARG USER_NAME=user
 ARG USER_UID=1000
@@ -7,6 +7,7 @@ ARG INSTALL_TYPE=desktop
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=en_US.UTF-8
+ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES},display
 
 # User
 RUN apt update -y && apt install -y sudo
@@ -47,7 +48,7 @@ RUN if [ "$INSTALL_TYPE" = "desktop" ]; then \
 
 RUN echo "source /opt/ros/humble/setup.bash" | sudo tee /root/.bashrc
 RUN echo "source /opt/ros/humble/setup.bash" | tee /home/${USER_NAME}/.bashrc
-    
+
 # Install common packages
 RUN sudo -E apt update && sudo -E apt install -y \
     git \
@@ -67,5 +68,15 @@ RUN pip install --no-cache-dir --upgrade pip && \
     flake8==7.1.1 \
     pycodestyle==2.12.1
 
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    libxext6 \
+    libx11-6 \
+    x11-xserver-utils \
+    mesa-utils \
+    && apt-get clean
+
+
 ENTRYPOINT ["/usr/bin/tini", "--"]
+
 CMD ["tail", "-f", "/dev/null"]
