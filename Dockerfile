@@ -20,6 +20,13 @@ RUN mkdir -p /workspace && \
 
 USER ${USER_NAME}
 WORKDIR /workspace
+
+# Install Gazebo
+RUN sudo apt-get update && sudo apt-get -y install curl lsb-release gnupg
+RUN sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null && \
+    sudo apt-get update && \
+    sudo apt-get install -y gz-harmonic
     
 # Locales (UTF-8)
 RUN sudo -E apt update -y && sudo -E apt install -y locales
@@ -56,7 +63,8 @@ RUN sudo -E apt update && sudo -E apt install -y \
     make \
     python3-pip python-is-python3 \
     tini \
-    vim
+    vim \
+    python3-sdformat14 libsdformat14 
 
 # Clear APT cache
 RUN sudo rm -rf /var/lib/apt/lists/*
