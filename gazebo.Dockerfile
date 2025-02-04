@@ -17,4 +17,4 @@ RUN echo "deb [arch=$(dpkg --print-architecture)] http://packages.ros.org/ros2/u
 # Installation
 RUN sudo -E apt update -y && sudo -E apt install -y \
     gz-harmonic \
-    ros-humble-ros-gz
+    ros-humble-ros-gzharmonic
